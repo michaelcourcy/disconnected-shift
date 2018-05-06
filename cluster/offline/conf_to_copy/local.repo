@@ -1,0 +1,5 @@
+[local]
+name=socle-openshift
+baseurl=file:///vagrant/offline/repos
+gpgcheck=0
+enabled=1

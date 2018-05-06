@@ -1,0 +1,89 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# All Vagrant configuration is done below. The "2" in Vagrant.configure
+# configures the configuration version (we support older styles for
+# backwards compatibility). Please don't change it unless you know what
+# you're doing.
+Vagrant.configure("2") do |config|
+  
+  # argument is a set of non-required options.
+   config.vm.box = "oc_base.box"
+   #config.ssh.username = "vagrant"
+   #config.ssh.password = "vagrant"
+   #config.ssh.insert_key = true
+   config.vm.provider "virtualbox" do |v|
+        v.linked_clone = true
+   end
+   
+   #pour identifer les packages necessaires tous les garder dans le cache 
+   #config.vm.provision "shell", inline: "sed -i s/keepcache=0/keepcache=1/ /etc/yum.conf"
+   config.vm.provision "shell", path: "disable_firewall.sh"
+   config.vm.provision "shell", path: "remove_hostname_entry_in_hosts.sh"
+         
+   config.vm.define "master" do |master|
+   	  master.vm.hostname = "master.lab.example.com"
+      master.vm.network "private_network", ip: "172.25.250.10"
+	  master.vm.network "forwarded_port", guest: 8443, host: 8443
+      master.vm.provider "virtualbox" do |v|
+          v.memory = 4096
+          v.cpus = 2
+      end
+      master.vm.provision "shell", path: "configure_dhcp.sh"
+	  master.vm.provision "shell", path: "install_openshift_images.sh"	  
+   end
+   
+   config.vm.define "node1" do |node1|
+      node1.vm.hostname = "node1.lab.example.com"
+      node1.vm.network "private_network", ip: "172.25.250.11"
+      node1.vm.provider "virtualbox" do |v|
+          v.memory = 2048
+          v.cpus = 2
+      end
+      node1.vm.provision "shell", path: "configure_dhcp.sh"
+	  node1.vm.provision "shell", path: "install_openshift_images.sh"	  
+   end
+   
+   config.vm.define "node2" do |node2|
+   	  node2.vm.hostname = "node2.lab.example.com"
+      node2.vm.network "private_network", ip: "172.25.250.12"
+      node2.vm.provider "virtualbox" do |v|
+          v.memory = 2048
+          v.cpus = 2
+      end
+      node2.vm.provision "shell", path: "configure_dhcp.sh"
+	  node2.vm.provision "shell", path: "install_openshift_images.sh"
+   end
+   
+   #ajout d'un noeud 
+   #config.vm.define "node3" do |node3|
+   #	  node3.vm.hostname = "node3.lab.example.com"
+   #   node3.vm.network "private_network", ip: "172.25.250.13"
+   #   node3.vm.provider "virtualbox" do |v|
+   #       v.memory = 2048
+   #       v.cpus = 2
+   #   end
+   #   node3.vm.provision "shell", path: "configure_dhcp.sh"
+   #	  node3.vm.provision "shell", path: "install_openshift_images.sh"
+   #end
+   
+   config.vm.define "workstation" do |workstation|      
+      workstation.vm.hostname = "workstation.lab.example.com"
+      workstation.vm.network "private_network", ip: "172.25.250.254"
+      workstation.vm.provider "virtualbox" do |v|
+          v.memory = 512
+          v.cpus = 1
+		  v.name = "oc_workstation"		  
+      end	  	  
+      workstation.vm.provision "shell", path: "install_dns.sh"
+      workstation.vm.provision "shell", path: "configure_dhcp.sh" 	  
+	  workstation.vm.provision "shell", path: "deploy_keys.sh"
+	  #workstation.vm.provision "shell", path: "create_secure_registry.sh"
+	  workstation.vm.provision "shell", path: "install_ansible_and_cluster.sh"	  
+	  workstation.vm.provision "shell", inline: "ssh root@master.lab.example.com 'sh /vagrant/create_openshift_admin.sh'"	  
+	  workstation.vm.provision "shell", path: "connection_admin.sh"
+   end
+     
+   
+end
+

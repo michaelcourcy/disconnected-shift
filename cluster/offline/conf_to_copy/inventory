@@ -1,0 +1,91 @@
+[OSEv3:children]
+masters
+nodes
+etcd
+
+# Set variables common for all OSEv3 hosts
+[OSEv3:vars]
+# SSH user, this user should allow ssh based auth without requiring a password
+ansible_ssh_user=root
+# If ansible_ssh_user is not root, ansible_become must be set to true
+#ansible_become=true
+
+
+enable_excluders=False
+enable_docker_excluder=False
+ansible_service_broker_install=False
+
+
+deployment_type=origin
+openshift_deployment_type=origin
+
+# Specify the generic release of OpenShift to install. This is used mainly just during installation, after which we
+# rely on the version running on the first master. Works best for containerized installs where we can usually
+# use this to lookup the latest exact version of the container images, which is the tag actually used to configure
+# the cluster. For RPM installations we just verify the version detected in your configured repos matches this
+# release.
+openshift_release=v3.7.1
+
+# set exact RPM version (include - prefix)
+#openshift_pkg_version=-3.6.0
+# you may also specify version and release, ie:
+#openshift_pkg_version=-3.7.0-0.126.0.git.0.9351aae.el7
+openshift_pkg_version=-3.7.1
+
+# Specify an exact container image tag to install or configure.
+# WARNING: This value will be used for all hosts in containerized environments, even those that have another version installed.
+# This could potentially trigger an upgrade and downtime, so be careful with modifying this value after the cluster is set up.
+openshift_image_tag=v3.7.1
+
+
+# Force a specific prefix (IE: registry) to use when pulling the service catalog image
+# NOTE: The registry all the way up to the start of the image name must be provided. Two examples
+# below are provided.
+openshift_service_catalog_image_prefix=docker.io/openshift/origin-
+#openshift_service_catalog_image_prefix=registry.access.redhat.com/openshift3/ose-
+# Force a specific image version to use when pulling the service catalog image
+openshift_service_catalog_image_version=v3.7.1
+
+template_service_broker_image_version=v3.7.1
+template_service_broker_selector={"region":"infra"}
+
+osm_use_cockpit=true
+# OpenShift Registry Console Options
+# Override the console image prefix:
+# origin default is "cockpit/", enterprise default is "openshift3/"
+openshift_cockpit_deployer_prefix=docker.io/cockpit/
+# origin default is "kubernetes", enterprise default is "registry-console"
+openshift_cockpit_deployer_basename=kubernetes
+# Override image version, defaults to latest for origin, vX.Y product version for enterprise
+#In the registry-console template there's no imagePullPolicy defined then this rules apply
+#https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/builds_and_image_streams.html#image-pull-policy). 
+#As my tag was latest the imagePullPolicy became "Always" which is not desired in a disconnected install
+openshift_cockpit_deployer_version=v3.7.1
+
+
+
+#specify where the console should be deployed
+openshift_web_console_nodeselector={'region':'infra'}
+
+
+# uncomment the following to enable htpasswd authentication; defaults to DenyAllPasswordIdentityProvider
+openshift_master_identity_providers=[{'name': 'htpasswd_auth', 'login': 'true', 'challenge': 'true', 'kind': 'HTPasswdPasswordIdentityProvider', 'filename': '/etc/origin/master/htpasswd'}]
+
+# subdomain wildcard 
+openshift_master_default_subdomain=cloudapps.lab.example.com
+
+openshift_disable_check=memory_availability,disk_availability,package_version
+
+# host group for masters
+[masters]
+master.lab.example.com openshift_ip=172.25.250.10
+
+# host group for etcd
+[etcd]
+master.lab.example.com openshift_ip=172.25.250.10
+
+# host group for nodes, includes region info
+[nodes]
+master.lab.example.com openshift_ip=172.25.250.10
+node1.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'east', 'type': 'router'}" openshift_ip=172.25.250.11
+node2.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'west'}" openshift_ip=172.25.250.12
