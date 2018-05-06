@@ -1,0 +1,7 @@
+
+[centos-openshift-origin]
+name=centos-openshift-origin
+baseurl=file:///vagrant/offline/repos/centos-openshift-origin
+gpgcheck=0
+enabled=1
+

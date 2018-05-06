@@ -1,0 +1,29 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+#################################################
+## This project prepare the offline environement
+## Thus it must be run online !! 
+## check openshift_config if you need to set 
+## an http_proxy and to fix the differents 
+## versions number
+#################################################
+
+require "../common.rb"
+searchAndMoveLocally 'offline', 'cluster', 'base_machine'
+
+Vagrant.configure("2") do |config|
+   config.vm.box = "relativkreativ/centos-7-minimal"
+   
+   #make sure the openshift_config env var are shared among all users through the different reboots
+   #https://github.com/hashicorp/vagrant/issues/7015
+   config.vm.provision "shell", inline: "cp /vagrant/openshift_config.sh /etc/profile.d/openshift_config.sh"
+   config.vm.provision "shell", inline: ". /etc/profile.d/openshift_config.sh"
+   
+   config.vm.provision "shell", path: "install_base_package.sh"
+   config.vm.provision "shell", path: "clone_openshift-ansible_project.sh"
+   
+   config.vm.provision "shell", path: "create_repo.sh"
+   #config.vm.provision "shell", path: "pull_images.sh"
+   #config.vm.provision "shell", path: "save_images.sh"   
+end

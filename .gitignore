@@ -1,14 +1,30 @@
-#ignore binaries
+#ignore binaries in offline 
 cluster/offline/repos/
+cluster/offline/images/
+base_machine/offline/repos/
+base_machine/offline/images/
+prepare_offline/offline/repos/
+prepare_offline/offline/images/
+
+#ignore oc_base.box
 cluster/oc_base.box
 base_machine/oc_base.box
+
+#ignore vdi
 base_machine/sdb.vdi
-cluster/offline/images/
+
 #ignore the ssh config file to connect in mobaxterm
 cluster/ssh*
+base_machine/ssh*
+prepare_offline/ssh*
+
 #ignore vagrant internal conf
 cluster/.vagrant/
 base_machine/.vagrant/
+prepare_offline/.vagrant/
+
 #ignore openshift-ansible project
 cluster/offline/conf_to_copy/openshift-ansible/
+base_machine/offline/conf_to_copy/openshift-ansible/
+prepare_offline/offline/conf_to_copy/openshift-ansible/
 

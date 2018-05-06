@@ -1,0 +1,7 @@
+
+[extras]
+name=extras
+baseurl=file:///vagrant/offline/repos/extras
+gpgcheck=0
+enabled=1
+

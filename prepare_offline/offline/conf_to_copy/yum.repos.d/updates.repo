@@ -1,0 +1,7 @@
+
+[updates]
+name=updates
+baseurl=file:///vagrant/offline/repos/updates
+gpgcheck=0
+enabled=1
+

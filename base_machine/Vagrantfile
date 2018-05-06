@@ -1,6 +1,9 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
+require "../common.rb"
+searchAndMoveLocally 'offline', 'prepare_offline', 'cluster'
+
 Vagrant.configure("2") do |config|
    config.vm.box = "relativkreativ/centos-7-minimal"
    config.vm.provider "virtualbox" do |vb|

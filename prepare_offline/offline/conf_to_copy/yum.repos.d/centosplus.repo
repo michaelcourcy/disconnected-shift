@@ -1,0 +1,7 @@
+
+[centosplus]
+name=centosplus
+baseurl=file:///vagrant/offline/repos/centosplus
+gpgcheck=0
+enabled=1
+
