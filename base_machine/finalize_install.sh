@@ -1,9 +1,11 @@
+echo "changing root password to root thus root/root"
+echo -e "root\nroot" | passwd
+
 echo "****************************************************"
-echo "* INSTALL AUTO TERMINEE                            *"
+echo "*      Install finish                              *"
 echo "*                                                  *"
-echo "* - Modifier le mot de passe root                  *"
-echo "* - rebooter via vagrant reload                    *"
-echo "* - reconfigurer VBox via les commandes suivantes: *"
+echo "* - reboot :  vagrant reload                       *"
+echo "* - reconfigure VBox tool                          *"
 echo "*      cd /opt/VBox*/init                          *"
 echo "*      ./vboxadd setup                             *"
 echo "****************************************************"

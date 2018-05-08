@@ -1,8 +1,6 @@
 # -*- mode: ruby -*-
 # vi: set ft=ruby :
 
-require "../common.rb"
-searchAndMoveLocally 'offline', 'prepare_offline', 'cluster'
 
 Vagrant.configure("2") do |config|
    config.vm.box = "relativkreativ/centos-7-minimal"
@@ -13,9 +11,8 @@ Vagrant.configure("2") do |config|
 	  vb.customize ['createhd', '--filename', file_to_disk, '--size', 2 * 20480] unless File.exist?(file_to_disk)
 	  vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', port, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
    end
-   # on fait une install complètement offline
    config.vm.provision "shell", path: "change_repo_location.sh"
    config.vm.provision "shell", path: "install.sh"
-   config.vm.provision "shell", path: "install_docker_1.12.6.sh"
+   config.vm.provision "shell", path: "install_docker_1.13.1.sh"
    config.vm.provision "shell", path: "finalize_install.sh"
 end
