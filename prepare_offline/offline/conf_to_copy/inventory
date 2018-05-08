@@ -24,18 +24,18 @@ openshift_deployment_type=origin
 # use this to lookup the latest exact version of the container images, which is the tag actually used to configure
 # the cluster. For RPM installations we just verify the version detected in your configured repos matches this
 # release.
-openshift_release=v3.7.1
+openshift_release=v3.9.0
 
 # set exact RPM version (include - prefix)
 #openshift_pkg_version=-3.6.0
 # you may also specify version and release, ie:
 #openshift_pkg_version=-3.7.0-0.126.0.git.0.9351aae.el7
-openshift_pkg_version=-3.7.1
+openshift_pkg_version=-3.9.0
 
 # Specify an exact container image tag to install or configure.
 # WARNING: This value will be used for all hosts in containerized environments, even those that have another version installed.
 # This could potentially trigger an upgrade and downtime, so be careful with modifying this value after the cluster is set up.
-openshift_image_tag=v3.7.1
+openshift_image_tag=v3.9.0
 
 
 # Force a specific prefix (IE: registry) to use when pulling the service catalog image
@@ -44,9 +44,9 @@ openshift_image_tag=v3.7.1
 openshift_service_catalog_image_prefix=docker.io/openshift/origin-
 #openshift_service_catalog_image_prefix=registry.access.redhat.com/openshift3/ose-
 # Force a specific image version to use when pulling the service catalog image
-openshift_service_catalog_image_version=v3.7.1
+openshift_service_catalog_image_version=v3.9.0
 
-template_service_broker_image_version=v3.7.1
+template_service_broker_image_version=v3.9.0
 template_service_broker_selector={"region":"infra"}
 
 osm_use_cockpit=true
@@ -60,7 +60,7 @@ openshift_cockpit_deployer_basename=kubernetes
 #In the registry-console template there's no imagePullPolicy defined then this rules apply
 #https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/builds_and_image_streams.html#image-pull-policy). 
 #As my tag was latest the imagePullPolicy became "Always" which is not desired in a disconnected install
-openshift_cockpit_deployer_version=v3.7.1
+openshift_cockpit_deployer_version=v3.9.0
 
 
 

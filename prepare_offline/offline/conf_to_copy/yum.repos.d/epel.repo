@@ -1,0 +1,14 @@
+
+[epel]
+name=epel
+baseurl=file:///vagrant/offline/repos/epel
+gpgcheck=0
+enabled=1
+
+
+[epel]
+name=epel
+baseurl=file:///vagrant/offline/repos/epel
+gpgcheck=0
+enabled=1
+

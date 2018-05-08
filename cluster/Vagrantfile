@@ -58,7 +58,13 @@ Vagrant.configure("2") do |config|
 	  node2.vm.provision "shell", path: "install_openshift_images.sh"
    end
    
-   #ajout d'un noeud 
+   #Uncomment here to try adding a node on a running cluster 
+   #first change the entries in dns workstation
+   #  /var/named/forward.openshift 
+   #  /var/named/reverse.openshift 
+   #then start node3 : vagrant up node3 
+   #follow the doc 
+   #https://docs.openshift.org/3.9/install_config/adding_hosts_to_existing_cluster.html#adding-nodes-advanced
    #config.vm.define "node3" do |node3|
    #	  node3.vm.hostname = "node3.lab.example.com"
    #   node3.vm.network "private_network", ip: "172.25.250.13"
@@ -67,7 +73,7 @@ Vagrant.configure("2") do |config|
    #       v.cpus = 2
    #   end
    #   node3.vm.provision "shell", path: "configure_dhcp.sh"
-   #	  node3.vm.provision "shell", path: "install_openshift_images.sh"
+   #   node3.vm.provision "shell", path: "install_openshift_images.sh"
    #end
    
    config.vm.define "workstation" do |workstation|      
@@ -81,6 +87,7 @@ Vagrant.configure("2") do |config|
       workstation.vm.provision "shell", path: "install_dns.sh"
       workstation.vm.provision "shell", path: "configure_dhcp.sh" 	  
 	  workstation.vm.provision "shell", path: "deploy_keys.sh"
+	  #workstation.vm.provision "shell", path: "generate_certificate_for_external_registry.sh"
 	  #workstation.vm.provision "shell", path: "create_secure_registry.sh"
 	  workstation.vm.provision "shell", path: "install_ansible_and_cluster.sh"	  
 	  workstation.vm.provision "shell", inline: "ssh root@master.lab.example.com 'sh /vagrant/create_openshift_admin.sh'"	  

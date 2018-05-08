@@ -1,10 +1,12 @@
-#ignore binaries in offline 
-cluster/offline/repos/
-cluster/offline/images/
-base_machine/offline/repos/
-base_machine/offline/images/
+#offline directory in clusters and base_machine are recopy
+cluster/offline/
+base_machine/offline/
+#prepare offline has a set of initialised directory
+#except repos images and openshift-ansible which are 
+#downloaded during prepare_offline
 prepare_offline/offline/repos/
-prepare_offline/offline/images/
+prepare_offline/offline/images/*.tar
+prepare_offline/offline/conf_to_copy/openshift-ansible/
 
 #ignore oc_base.box
 cluster/oc_base.box
@@ -23,8 +25,6 @@ cluster/.vagrant/
 base_machine/.vagrant/
 prepare_offline/.vagrant/
 
-#ignore openshift-ansible project
-cluster/offline/conf_to_copy/openshift-ansible/
-base_machine/offline/conf_to_copy/openshift-ansible/
-prepare_offline/offline/conf_to_copy/openshift-ansible/
+
+
 

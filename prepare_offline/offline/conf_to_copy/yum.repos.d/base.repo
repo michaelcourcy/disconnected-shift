@@ -5,3 +5,10 @@ baseurl=file:///vagrant/offline/repos/base
 gpgcheck=0
 enabled=1
 
+
+[base]
+name=base
+baseurl=file:///vagrant/offline/repos/base
+gpgcheck=0
+enabled=1
+

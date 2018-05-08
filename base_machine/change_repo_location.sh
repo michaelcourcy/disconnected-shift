@@ -1,9 +1,9 @@
-echo "contrôle du répertoire pour le repo"
+echo "checking offline/repos directory"
 if [ ! -d /vagrant/offline/repos ]
 then 
-	echo "Le répertoire /vagrant/offline/repos est absent l'installation des dépendances sera impossible" >&2
+	echo "directory /vagrant/offline/repos is missing we must exit" >&2
 	exit 1
 fi
-echo "Création d'un repo yum local pour la machine $(hostname)"
+echo "Adding *.repo file for $(hostname)"
 rm -rf /etc/yum.repos.d/*
-cp /vagrant/offline/conf_to_copy/local.repo /etc/yum.repos.d/
+cp /vagrant/offline/conf_to_copy/yum.repos.d/*.repo /etc/yum.repos.d/

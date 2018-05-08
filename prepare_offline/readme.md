@@ -1,24 +1,26 @@
-Ce document décrit comment ont été construit repos et images
+# Prepare offline directory
 
-Construction de repos 
-	Extraction des noms de repos (dans /etc/yum.d/*.repo) après avoir suivi la documentation d'install online cf video  -> repos.txt		
-	Nettoyage des crochets sed -E -i.bak  's/\[(.*)\]/\1/' ~/repos.txt
-    Un script shell boucle sur les noms ses repos et récupere une copie des repos -> sync_repo.sh
-	Beaucoup de fichiers sont dupliqués on récupere la liste des duplicats: fdupes /repos > duplicates.txt 
-	Puis on supprime les duplicates -> remove_duplicate.sh 
-	Enfin on cree la base createrepo --database /repos 
-	download par ftp des repos sur le disque dur externe (a executer sur l'host windows avec cygwin) scp -r root@172.25.250.254:/repos /cygdrive/e/offline/repos/
-	
-Construction de images 
-	On recherche toutes les images installé sur les différents noeud en docker.io -> docker images | grep docker.io 
-	On pull ses images pour les avoir sur workstation -> download_images.sh
-	On les sauve dans un tar -> save_images.sh
-	on recupère le tar pour le mettre sur le disque dur externe
+This project prepare the offline environement for the 3.9 openshift-origin install. 
 
-Recupération du projet openshift-ansible
-	git clone -b release-3.8 https://github.com/openshift/openshift-ansible
-	Attention de le faire depuis une vm linux et non depuis windows car vous
-	aurez des soucis dans les sauts de lignes
-	
-		
-	
+## Run it connected to the internet 
+
+It must be run online, it will generate  an offline directory that you'll have to copy in project base_machine and finally in cluster.  This directory has all the assets needed to  allow base_machine and cluster projects to run offline.
+
+## Scripts are idempotent
+
+The scripts here are idempotent.  which means you can replay them without errors and somehow they don't restart from zero.
+
+If you replay :
+*   clone_openshift-ansible_project.sh you get all the change from openshift-ansible/release-3.9
+*   create_repo.sh you only get the new packages in the differents repos 
+*   pull_and_save_images.sh you get the changes for the images described in images/*.list files. If the images didn't change docker won't redownload them.
+
+## Once it's finished 
+ 
+Once the execution of the scripts finish you can safely delete the machine because the offline directory is created in /vagrant shared directory and won't be deleted with the machine.
+
+The execution time of the scripts mainly depends of the quality of your connection with my 2Mo/s connection it took me about 30 hours and the whole directory is about 36,4 Go ...
+
+Now copy or move the offline directory to base_machine and follow the instructions to create the machine you're going to clone.
+
+ 
