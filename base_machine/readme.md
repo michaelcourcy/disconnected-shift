@@ -13,6 +13,6 @@ The goal is to produce the oc_base.box that will be used as a base for cloning a
 *   Make sure you have moved or copied the offline directory you produced in prepare_offline
 *   vagrant up
 *   vagrant reload 
-*   sudo su && cd /opt/VBox*/init && vagrant package --output oc_base.box
+*   sudo su && cd /opt/VBox*/init && ./vboxadd setup
 *   vagrant halt 
 *   vagrant package --output oc_base.box 
