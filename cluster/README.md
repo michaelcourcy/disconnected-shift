@@ -13,7 +13,7 @@ This project build the 4 machines :
 	   
 ## Launching the cluster 
 
-1.   Copy oc_base.box from base_machine
+1.   Copy oc_base.box from base_machine, if you already did this make sure you delete ~/.vagrant.d/boxes/oc_base directory
 2.   Copy offline from base_machine or prepare_offline
 3.   vargant up 
 

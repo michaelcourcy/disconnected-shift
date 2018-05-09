@@ -1,0 +1,7 @@
+[ansible]
+name=CentOS OpenShift Origin
+baseurl=http://releases.ansible.com/ansible/rpm/release/epel-7-x86_64/
+enabled=1
+gpgcheck=0
+#gpgkey=file:///etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-SIG-PaaS
+

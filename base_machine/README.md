@@ -5,7 +5,7 @@ The goal is to produce the oc_base.box that will be used as a base for cloning a
 *   Cloning save strorage space
 *   Docker storage is setup properly 
 *   ntp is activated  (to be improved for really offline env, even if test show it works)
-*   firewalld is desactivated  (to be imporved for security reasons)
+*   firewalld is desactivated  (to be improved for security reasons)
 
 
 ## To produce the oc_base.box 

@@ -1,0 +1,7 @@
+
+[ansible]
+name=ansible
+baseurl=file:///vagrant/offline/repos/ansible
+gpgcheck=0
+enabled=1
+
