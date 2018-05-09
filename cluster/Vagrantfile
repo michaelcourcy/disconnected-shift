@@ -26,7 +26,7 @@ Vagrant.configure("2") do |config|
           v.cpus = 2
       end
       master.vm.provision "shell", path: "configure_dhcp.sh"
-	  master.vm.provision "shell", path: "install_openshift_images.sh"	  
+	  #master.vm.provision "shell", path: "install_openshift_images.sh"	  
    end
    
    config.vm.define "node1" do |node1|
@@ -37,7 +37,7 @@ Vagrant.configure("2") do |config|
           v.cpus = 2
       end
       node1.vm.provision "shell", path: "configure_dhcp.sh"
-	  node1.vm.provision "shell", path: "install_openshift_images.sh"	  
+	  #node1.vm.provision "shell", path: "install_openshift_images.sh"	  
    end
    
    config.vm.define "node2" do |node2|
@@ -48,7 +48,7 @@ Vagrant.configure("2") do |config|
           v.cpus = 2
       end
       node2.vm.provision "shell", path: "configure_dhcp.sh"
-	  node2.vm.provision "shell", path: "install_openshift_images.sh"
+	  #node2.vm.provision "shell", path: "install_openshift_images.sh"
    end
    
    #Uncomment here to try adding a node on a running cluster 
@@ -73,16 +73,18 @@ Vagrant.configure("2") do |config|
       workstation.vm.hostname = "workstation.lab.example.com"
       workstation.vm.network "private_network", ip: "172.25.250.254"
       workstation.vm.provider "virtualbox" do |v|
-          v.memory = 512
+          v.memory = 1024
           v.cpus = 1
 		  v.name = "oc_workstation"		  
       end	  	  
       workstation.vm.provision "shell", path: "install_dns.sh"
       workstation.vm.provision "shell", path: "configure_dhcp.sh" 	  
 	  workstation.vm.provision "shell", path: "deploy_keys.sh"
-	  #workstation.vm.provision "shell", path: "generate_certificate_for_external_registry.sh"
-	  #workstation.vm.provision "shell", path: "create_secure_registry.sh"
-	  #workstation.vm.provision "shell", path: "deploy_images_to_the_registry.sh"
+	  
+	  workstation.vm.provision "shell", path: "generate_certificate_for_external_registry.sh"
+	  workstation.vm.provision "shell", path: "create_secure_registry.sh"
+	  workstation.vm.provision "shell", path: "deploy_images_to_the_registry.sh"
+	  
 	  workstation.vm.provision "shell", path: "install_ansible_and_cluster.sh"	  
 	  workstation.vm.provision "shell", inline: "ssh root@master.lab.example.com 'sh /vagrant/create_openshift_admin.sh'"	  
 	  workstation.vm.provision "shell", path: "connection_admin.sh"

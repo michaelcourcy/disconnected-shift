@@ -1,7 +1,7 @@
-echo "creation de la secure registry workstation.lab.example.com"
+echo "Create the secure registry workstation.lab.example.com"
 
-echo "installation de l'image registry"
-docker load -i /vagrant/offline/images/registry-images.tar
+echo "install of the registry:2 image"
+docker load -i /vagrant/offline/images/repository-2-images.tar
 
 echo "lancement de la registry sur workstation"
 cp -r /vagrant/offline/conf_to_copy/certs /root/
@@ -15,15 +15,13 @@ docker run -d \
   -p 443:443 \
   registry:2
   
-echo "Ajout des certificats CA sur les noeuds"
+echo "Adding CA certificate on all the nodes"
 ssh root@node1.lab.example.com  'sh /vagrant/get_workstation_CAcert.sh'
 ssh root@node2.lab.example.com  'sh /vagrant/get_workstation_CAcert.sh'
 ssh root@master.lab.example.com 'sh /vagrant/get_workstation_CAcert.sh'
+echo "And himself "
+sh /vagrant/get_workstation_CAcert.sh
+
  
-
-echo "push de cockpit/kubernetes vers la registry workstation"
-ssh root@node1.lab.example.com  'sh /vagrant/push_cockpit_vers_workstation.sh'
-
-#Todo gérer une registry complete pour l'install au lieu de préinstaller les images sur les noeuds 
  
  

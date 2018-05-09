@@ -15,6 +15,11 @@ enable_excluders=False
 enable_docker_excluder=False
 ansible_service_broker_install=False
 
+openshift_docker_blocked_registries=docker.io
+oreg_url=workstation.lab.example.com/openshift/origin-${component}:${version}
+openshift_examples_modify_imagestreams=true
+openshift_docker_additional_registries=workstation.lab.example.com
+
 
 deployment_type=origin
 openshift_deployment_type=origin
@@ -41,26 +46,29 @@ openshift_image_tag=v3.9.0
 # Force a specific prefix (IE: registry) to use when pulling the service catalog image
 # NOTE: The registry all the way up to the start of the image name must be provided. Two examples
 # below are provided.
-openshift_service_catalog_image_prefix=docker.io/openshift/origin-
+openshift_service_catalog_image_prefix=workstation.lab.example.com/openshift/origin-
 #openshift_service_catalog_image_prefix=registry.access.redhat.com/openshift3/ose-
 # Force a specific image version to use when pulling the service catalog image
 openshift_service_catalog_image_version=v3.9.0
 
+template_service_broker_prefix=workstation.lab.example.com/openshift/origin-
+template_service_broker_version=v3.9.0
 template_service_broker_image_version=v3.9.0
 template_service_broker_selector={"region":"infra"}
+
 
 osm_use_cockpit=true
 # OpenShift Registry Console Options
 # Override the console image prefix:
 # origin default is "cockpit/", enterprise default is "openshift3/"
-openshift_cockpit_deployer_prefix=docker.io/cockpit/
+openshift_cockpit_deployer_prefix=workstation.lab.example.com/cockpit/
 # origin default is "kubernetes", enterprise default is "registry-console"
 openshift_cockpit_deployer_basename=kubernetes
 # Override image version, defaults to latest for origin, vX.Y product version for enterprise
 #In the registry-console template there's no imagePullPolicy defined then this rules apply
 #https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/builds_and_image_streams.html#image-pull-policy). 
 #As my tag was latest the imagePullPolicy became "Always" which is not desired in a disconnected install
-openshift_cockpit_deployer_version=v3.9.0
+openshift_cockpit_deployer_version=latest
 
 
 
