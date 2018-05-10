@@ -1,6 +1,6 @@
 #installing and pushing the images to the registries 
 echo "installing origin-v3.9.0-images.tar"
-docker load -i /vagrant/offline/images/origin-v3.9.0-images.tar
+docker load -i /vagrant/offline/images/origin-infra-v3.9.0.tar
 
 #echo "installing origin-example.tar"
 #docker load -i /vagrant/offline/images/origin-example.tar

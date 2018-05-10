@@ -1,4 +1,4 @@
-#offline directory in clusters and base_machine are recopy
+#offline directory in clusters and base_machine are copies
 cluster/offline/
 base_machine/offline/
 #prepare offline has a set of initialised directory
@@ -7,6 +7,8 @@ base_machine/offline/
 prepare_offline/offline/repos/
 prepare_offline/offline/images/*.tar
 prepare_offline/offline/conf_to_copy/openshift-ansible/
+prepare_offline/offline/conf_to_copy/certs/
+
 
 #ignore oc_base.box
 cluster/oc_base.box
@@ -16,9 +18,9 @@ base_machine/oc_base.box
 base_machine/sdb.vdi
 
 #ignore the ssh config file to connect in mobaxterm
-cluster/ssh*
-base_machine/ssh*
-prepare_offline/ssh*
+cluster/.ssh/
+base_machine/.ssh/
+prepare_offline/.ssh/
 
 #ignore vagrant internal conf
 cluster/.vagrant/

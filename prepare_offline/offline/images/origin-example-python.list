@@ -1,0 +1,5 @@
+docker.io/openshift/python-33-centos7:latest
+docker.io/centos/python-27-centos7:latest
+docker.io/centos/python-34-centos7:latest
+docker.io/centos/python-35-centos7:latest
+docker.io/centos/python-36-centos7:latest

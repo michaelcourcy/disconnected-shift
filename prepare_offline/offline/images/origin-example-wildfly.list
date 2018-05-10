@@ -1,0 +1,6 @@
+docker.io/openshift/wildfly-81-centos7:latest
+docker.io/openshift/wildfly-90-centos7:latest
+docker.io/openshift/wildfly-100-centos7:latest
+docker.io/openshift/wildfly-101-centos7:latest
+docker.io/openshift/wildfly-110-centos7:latest
+docker.io/openshift/wildfly-120-centos7:latest

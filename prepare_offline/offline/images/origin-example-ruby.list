@@ -1,0 +1,4 @@
+docker.io/openshift/ruby-20-centos7:latest
+docker.io/centos/ruby-22-centos7:latest
+docker.io/centos/ruby-23-centos7:latest
+docker.io/centos/ruby-24-centos7:latest

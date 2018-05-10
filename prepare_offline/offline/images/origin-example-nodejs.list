@@ -1,0 +1,4 @@
+docker.io/openshift/nodejs-010-centos7:latest
+docker.io/centos/nodejs-4-centos7:latest
+docker.io/centos/nodejs-6-centos7:latest
+docker.io/centos/nodejs-8-centos7:latest

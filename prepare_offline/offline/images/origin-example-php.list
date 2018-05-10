@@ -1,0 +1,4 @@
+docker.io/openshift/php-55-centos7:latest
+docker.io/centos/php-56-centos7:latest
+docker.io/centos/php-70-centos7:latest
+docker.io/centos/php-71-centos7:latest

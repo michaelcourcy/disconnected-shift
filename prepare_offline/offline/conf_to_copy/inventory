@@ -135,5 +135,7 @@ master.lab.example.com openshift_ip=172.25.250.10
 # host group for nodes, includes region info
 [nodes]
 master.lab.example.com openshift_ip=172.25.250.10
-node1.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'east', 'type': 'router'}" openshift_ip=172.25.250.11
-node2.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'west'}" openshift_ip=172.25.250.12
+#we put the compute label as well because we don't have enough resources to have infra node different from compute node
+#https://github.com/openshift/openshift-ansible/issues/8327
+node1.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'east', 'type': 'router', 'node-role.kubernetes.io/compute': 'true'}" openshift_ip=172.25.250.11
+node2.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'west', 'node-role.kubernetes.io/compute': 'true'}" openshift_ip=172.25.250.12
