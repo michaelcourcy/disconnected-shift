@@ -13,7 +13,7 @@ cp -r /vagrant/offline/conf_to_copy/openshift-ansible $ANSIBLE_DIR/
 #openshift_examples_modify_imagestreams has no effect on origin install https://github.com/openshift/openshift-ansible/issues/8315
 #I had to change manually the file openshift-ansible/roles/openshift_examples/files/examples/v3.9/image-streams/image-streams-centos7.json
 #to have the image streams to point to the workstation.lab.example.com registry
-cp /vagrant/offline/conf_to_copy/image-streams-centos7_modified_for_workstation.json $ANSIBLE_DIR/openshift-ansible/roles/openshift_examples/files/examples/v3.9/image-streams/image-streams-centos7.json
+cp -f /vagrant/offline/conf_to_copy/image-streams-centos7_modified_for_workstation.json $ANSIBLE_DIR/openshift-ansible/roles/openshift_examples/files/examples/v3.9/image-streams/image-streams-centos7.json
 
 #we change the origin-dns.conf.j2 that will be used by dnsmask because we have in vagrant 2 interface the nat and the 172.25.250.0/24 
 #we didn't make named a recursive named server because the upstream dns server depend of the connection we have on the laptop 

@@ -1,7 +1,7 @@
 echo "cleaning the previous images to get free spaces except the running"
 docker system prune -a -f
 
-for example in "dotnet httpd jenkins mariadb mongodb mysql nginx nodejs perl php postgresql python redis ruby wildfly"
+for example in dotnet httpd jenkins mariadb mongodb mysql nginx nodejs perl php postgresql python redis ruby wildfly
 do
 	echo "installing example $example"
 	docker load -i /vagrant/offline/images/origin-example-$example.tar

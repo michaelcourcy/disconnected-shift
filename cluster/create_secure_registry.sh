@@ -1,7 +1,7 @@
 echo "Create the secure registry workstation.lab.example.com"
 
 echo "install of the registry:2 image"
-docker load -i /vagrant/offline/images/repository-2-images.tar
+docker load -i /vagrant/offline/images/repository-2.tar
 
 echo "lancement de la registry sur workstation"
 cp -r /vagrant/offline/conf_to_copy/certs /root/
