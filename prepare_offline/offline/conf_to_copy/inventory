@@ -67,7 +67,8 @@ openshift_cockpit_deployer_basename=kubernetes
 # Override image version, defaults to latest for origin, vX.Y product version for enterprise
 #In the registry-console template there's no imagePullPolicy defined then this rules apply
 #https://docs.openshift.com/enterprise/3.0/architecture/core_concepts/builds_and_image_streams.html#image-pull-policy). 
-#As my tag was latest the imagePullPolicy became "Always" which is not desired in a disconnected install
+#As my tag was latest the imagePullPolicy became "Always" which lead to a risk of ImagePullBackOff if the external
+#registry die on workstation 
 openshift_cockpit_deployer_version=latest
 
 

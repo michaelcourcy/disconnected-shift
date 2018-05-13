@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: nginx-nfs-pod 
+  labels:
+    name: nginx-nfs-pod
+spec:
+  containers:
+    - name: nginx-nfs-pod
+      image: docker-registry.default.svc:5000/nfs/openshift-nginx 
+      ports:
+        - name: web
+          containerPort: 8080
+      volumeMounts:
+        - name: nfsvol 
+          mountPath: /usr/share/nginx/html 
+  securityContext:
+      supplementalGroups: [65534] 
+      privileged: false
+  volumes:
+    - name: nfsvol
+      persistentVolumeClaim:
+        claimName: nfs-pvc 

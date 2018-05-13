@@ -75,12 +75,22 @@ Vagrant.configure("2") do |config|
       workstation.vm.provider "virtualbox" do |v|
           v.memory = 1024
           v.cpus = 1
-		  v.name = "oc_workstation"		  
+		  v.name = "oc_workstation"	
+		  #create a suplementary volume for nfs of 20 Go
+		  #controller_name = 'SATA Controller'
+		  #port=1
+		  #file_to_disk = "./sdc.vdi"
+		  #v.customize ['createhd', '--filename', file_to_disk, '--size', 1 * 20480] unless File.exist?(file_to_disk)
+		  #v.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', port, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
       end	  	  
-      workstation.vm.provision "shell", path: "install_dns.sh"
+	  
+	  #First we need a dns it's mandatory for all the coming operations
       workstation.vm.provision "shell", path: "configure_dhcp.sh" 	  
+      workstation.vm.provision "shell", path: "install_dns.sh"
+	  #Then make workstation able to operate as root on the othes hosts
 	  workstation.vm.provision "shell", path: "deploy_keys.sh"
 	  
+      workstation.vm.provision "shell", path: "install_nfs_server.sh"
 	  workstation.vm.provision "shell", path: "generate_certificate_for_external_registry.sh"
 	  workstation.vm.provision "shell", path: "create_secure_registry.sh"
 	  workstation.vm.provision "shell", path: "deploy_infra_images_to_the_registry.sh"

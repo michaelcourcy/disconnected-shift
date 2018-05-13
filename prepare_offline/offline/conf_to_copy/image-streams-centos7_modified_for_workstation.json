@@ -45,10 +45,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/httpd-24-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -95,10 +92,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/ruby-20-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "2.2",
@@ -115,10 +109,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/ruby-22-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "2.3",
@@ -135,10 +126,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/ruby-23-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "2.4",
@@ -155,10 +143,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/ruby-24-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -205,10 +190,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/nodejs-010-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "4",
@@ -225,10 +207,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/nodejs-4-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "6",
@@ -245,10 +224,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/nodejs-6-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "8",
@@ -264,10 +240,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/nodejs-8-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -314,10 +287,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/perl-516-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "5.20",
@@ -334,10 +304,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/perl-520-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "5.24",
@@ -354,10 +321,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/perl-524-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -404,10 +368,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/php-55-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "5.6",
@@ -424,10 +385,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/php-56-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "7.0",
@@ -444,10 +402,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/php-70-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "7.1",
@@ -464,10 +419,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/php-71-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -514,10 +466,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/python-33-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "2.7",
@@ -534,10 +483,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/python-27-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "3.4",
@@ -554,10 +500,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/python-34-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "3.5",
@@ -574,10 +517,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/python-35-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "3.6",
@@ -594,10 +534,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/python-36-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -644,10 +581,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/wildfly-81-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "9.0",
@@ -664,10 +598,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/wildfly-90-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "10.0",
@@ -684,10 +615,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/wildfly-100-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "10.1",
@@ -704,10 +632,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/wildfly-101-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -750,10 +675,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/mysql-55-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "5.6",
@@ -768,10 +690,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/mysql-56-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "5.7",
@@ -786,10 +705,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/mysql-57-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -820,10 +736,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/nginx-18-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "1.10",
@@ -840,10 +753,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/nginx-110-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "1.12",
@@ -860,10 +770,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/nginx-112-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "latest",
@@ -922,10 +829,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/mariadb-101-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "10.2",
@@ -940,10 +844,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/mariadb-102-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -986,10 +887,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/postgresql-92-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "9.4",
@@ -1004,10 +902,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/postgresql-94-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "9.5",
@@ -1022,10 +917,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/postgresql-95-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "9.6",
@@ -1040,10 +932,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/postgresql-96-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -1086,10 +975,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/mongodb-24-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "2.6",
@@ -1104,10 +990,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/mongodb-26-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "3.2",
@@ -1122,10 +1005,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/mongodb-32-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "3.4",
@@ -1140,10 +1020,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/mongodb-34-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -1186,10 +1063,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/centos/redis-32-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -1232,10 +1106,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/jenkins-1-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           },
           {
             "name": "2",
@@ -1250,10 +1121,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/openshift/jenkins-2-centos7:v3.9"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -1302,10 +1170,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/dotnet/dotnet-20-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
@@ -1348,10 +1213,7 @@
             "from": {
               "kind": "DockerImage",
               "name": "workstation.lab.example.com/dotnet/dotnet-20-runtime-centos7:latest"
-            },
-			"importPolicy": {
-			  "insecure": true
-			}
+            }
           }
         ]
       }
