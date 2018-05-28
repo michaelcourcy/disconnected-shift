@@ -9,7 +9,7 @@ prepare_offline/offline/images/*.tar
 prepare_offline/offline/conf_to_copy/openshift-ansible/
 prepare_offline/offline/conf_to_copy/certs/
 #don't add the extra rpms for the lab
-cluster/tp/glusterfs/rpms/
+cluster/lab/03_glusterfs/rpms/
 
 
 #ignore oc_base.box
