@@ -23,7 +23,7 @@ Review start.sh, it use netcat to act as a basic server
 	
 Now from workstation, let's build the image 
 
-	$> cd /vagrant/tp/bouchon 
+	$> cd /vagrant/lab/01_hello_world/bouchon 
 	$> docker build . -t bouchon
 	
 Let's test it locally 

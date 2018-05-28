@@ -44,9 +44,9 @@ Hence the logical volume created is /dev/vggluster/lvgluster
 
 This action must be done on  master 
 
-     cd /vagrant/tp/glusterfs/rpms/
+     cd /vagrant/lab/03_glusterfs/rpms/
 	 
-download heketi-cli and heketi-server from epel (I'm not completly offline I know ...) 
+download heketi-cli and heketi-server from epel (I'm not completly offline ...) 
 
 	 wget http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/h/heketi-client-5.0.1-1.el7.x86_64.rpm
 	 wget http://dl.fedoraproject.org/pub/epel/7/x86_64/Packages/h/heketi-5.0.1-1.el7.x86_64.rpm
@@ -203,7 +203,7 @@ Review the file StorageClass_Heketi.yml
 
 create the object from the file 
 
-    oc create -f /vagrant/tp/glusterfs/StorageClass_Heketi.yml
+    oc create -f /vagrant/lab/03_glusterfs/StorageClass_Heketi.yml
 	#check the sc (storage class) has been properly created
 	#note this command is global and do not depend on the project you are
     oc get sc
@@ -231,7 +231,7 @@ Create a PVC : review PVC_Heketi.yml using the StorageCLass
 	  
 Create the pvc from the file
 
-	oc create -f /vagrant/tp/glusterfs/PVC_Heketi.yml
+	oc create -f /vagrant/lab/03_glusterfs/PVC_Heketi.yml
 	
 You should see that it has been automatically provisionned without the need to create a PV before like in the lab nfs
 
