@@ -4,12 +4,12 @@ This project build the 4 machines :
 *   Node1 and Node2 which run the containers 
 *   Master which manage the etcd database and the master services, this machine is not schedulable
 *   Workstation which is not part of the cluster and act as 
-       *   dns server 
+       *   Dns server 
 	   *   Ansible installer 
-	   *   TODO external docker registry
-	   *   TODO yum repository
+	   *   External docker registry
+	   *   yum repository
 	   *   Openshift client
-       *   TODO NFS export point for persistent volume on the cluster	   
+       *   NFS export point for persistent volume on the cluster	   
 	   
 ## Launching the cluster 
 
@@ -36,5 +36,9 @@ To access the console and the *.cloudapps.lab.example application you deploy fro
     172.25.250.11 nginx.cloudapps.lab.example.com
     172.25.250.12 bouchon.cloudapps.lab.example.com
     172.25.250.11 bouchon2.cloudapps.lab.example.com
+	
+# Labs 
+
+Have a look to the [labs](labs/) and learn core concept in openshift.
 
 

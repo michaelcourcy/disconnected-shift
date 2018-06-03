@@ -1,16 +1,16 @@
 # Openshift origin disconnected
 
-This project aims to show how to build an openshift-origin 3.9 cluster in a diconnected mode.
+This project aims to show how to build an openshift-origin 3.9 cluster in a disconnected mode.
 
 ## Motivation 
 
-*   Diconnected environments are in fact something  quite common in many organisations : governement or bank
+*   Disconnected environments are in fact something  quite common in many organisations : governement or bank
 *   Connected env are often badly connected (poor bandwidth, proxy problem, frequent network outage) and make the installation fail 
 *   I think the way I build the solution and the machine are easy to understand so that you may be able to reproduce it whith other machine provider (Vmware, KVM, AWS, Azure, bare metal machine ...)
 
 ## Prerequisite
 
-You muste have VirtualBox and Vagrant on your system. This project was tested with this version :
+You must have VirtualBox and Vagrant on your system. This project was tested with this version :
 
 *   virtual box 5.1.30 r118389
 *   vagrant 2.03
