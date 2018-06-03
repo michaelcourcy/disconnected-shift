@@ -315,7 +315,7 @@ The route
 
     $> oc get route phpmyadmin -o yaml
 	
-Same story for the simplification but note the host field left blank to be defaulted, you may also notice the use of a target port because we send the trafic to a service that has 2 ports 80 and 9000 but we want it directed toward 9000.
+Same story for the simplification but note the host field left blank to be defaulted, you may also notice the use of a target port because we send the trafic to a service that has 2 ports 80 and 80 but we want it directed toward 9000.
 
     {
       "kind": "Route",

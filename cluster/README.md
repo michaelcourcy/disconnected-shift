@@ -39,6 +39,6 @@ To access the console and the *.cloudapps.lab.example application you deploy fro
 	
 # Labs 
 
-Have a look to the [labs](labs/) and learn core concept in openshift.
+Have a look to the [labs](lab/) and learn core concept in openshift.
 
 
