@@ -13,7 +13,7 @@ The user nfsnobody is the owner of the directory /var/nfsshare on the server and
 *   Create a pv : review lab/02_nfs/nfs-pv.yaml then oc create -f  nfs-pv.yaml
 *   Check : oc get pv
 *   Create a pvc : review lab/02_nfs/nfs-pvc.yaml oc create -f  nfs-pv.yaml
-*   Check : oc get pvc (it shoul be bound)
+*   Check : oc get pvc (it should be bound)
 *   Create an image compatible with open-shift 
 	*   cd openshift-nginx
 	*   docker build . -t openshift-nginx (you need to be online)
@@ -43,4 +43,8 @@ The user nfsnobody is the owner of the directory /var/nfsshare on the server and
 	*    expose the service to create a root from outside the cluster: oc expose service nginx-nfs-service
 	*    See the complete name of the route : oc get route 
 	*    Try it : curl nginx-nfs-service-nfs.cloudapps.lab.example.com
+	
+## Impovement 
+
+*   Autoprovisionning : try to build your own class
 

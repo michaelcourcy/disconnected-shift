@@ -315,7 +315,7 @@ The route
 
     $> oc get route phpmyadmin -o yaml
 	
-Same story for the simplification but note the host field left blank to be defaulted, you may also notice the use of a target port because we send the trafic to a service that has 2 ports 80 and 80 but we want it directed toward 9000.
+Same story for the simplification but note the host field left blank to be defaulted, you may also notice the use of a target port because we send the trafic to a service that has 2 ports 80 and 9000 but we do not want it directed toward 9000.
 
     {
       "kind": "Route",
@@ -381,12 +381,107 @@ It's now really easy to create another mysql database with it's phpmyadmin IHM
 Put the phpmyadmin-otherdb-mysql.cloudapps.lab.example.com name in your C:\Windows\System32\drivers\etc\hosts file, browse to http://phpmyadmin-otherdb-mysql.cloudapps.lab.example.com/index.php and check you have the right credential and the right databases.
 
 
+## Improvement 
+
+### Custom icon for the template
+
+#### Use a provided icon
+
+How to manage icon is described here https://docs.openshift.org/latest/dev_guide/templates.html#writing-templates.
+
+The simplest way is choosing among this list of icons : 
+*   https://rawgit.com/openshift/openshift-logos-icon/master/demo.html
+*   http://fontawesome.io/icons/
+*   https://www.patternfly.org/styles/icons/
+
+Then you simply change the value of the icon, pficon-storage-domain is a database with a magnifier, so it's a good choice for the objective we have
+
+We change the value of the icon class in the template.
+
+      "metadata": {
+        "name": "mysql-phpmyadmin-ephemeral",
+        "annotations": {
+          ....
+          "iconClass": "pficon-storage-domain",
+          .....
+        }
+      },
+	  
+Let's understand hos it works. 
+
+If you look the content of main.css you notice line 3020 the pficon selector choose the font : 
+
+    [class*=" pficon-"],[class^=pficon-]
+	{ ...   
+      font-family:PatternFlyIcons-webfont;
+	  font-style:normal;
+	  font-variant:normal;
+	  font-weight:400;
+	  line-height:1;
+	}
+	
+Then the pficon-storage-domain pseudo selector ::before choose a letter inside the font 
+
+    .pficon-storage-domain:before{content:"\e90e"}
+	
+Notice the unicode character e90e is a [private use codepoint](https://codepoints.net/U+E90E), which avoid bugging with "real" character.
+	
+
+#### Use your own icon 
+
+Let's say you want to use this logo https://upload.wikimedia.org/wikipedia/commons/4/4f/PhpMyAdmin_logo.svg 
+
+You have to reference the icon class in the template 
+
+      "metadata": {
+        "name": "mysql-phpmyadmin-ephemeral",
+        "annotations": {
+          ....
+          "iconClass": "phpmyadmin-logo",
+          .....
+        }
+      },
+
+
+Which will generate this span 
+
+	  <span class="phpmyadmin-logo"></span>
+	  
+We may try to use the solution with the font with a font generator like the [icomoon app](https://icomoon.io/app/#/select), but the simplest way of doing it is to 
+specify a background-image in a css we provide : disconnected.css 
+
+
+     span.phpmyadmin-logo{
+	   display:inline-block;
+	   width: 100%;
+	   height: 100%;
+	   background-size: contain;
+	    background:  url(data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7)      no-repeat center;
+	 }
+
+We need to serve this file, let's create an app we call static-content that serve a static content we can edit easily. The best for that is to use a S2I nginx template that point to a git repository we manage.
+
+	TODO 
+
+
+Check the content is properly served in https
+
+	TODO 
+
+The webconsole has to load this css now. In the openshift-webconsole namespace there's a configmap we can use to add [css and javascript file](https://docs.openshift.org/3.9/install_config/web_console_customization.html ) 
+
+    $ oc edit configmap/webconsole-config -n openshift-web-console
+	
+
+    TODO 
+
+
 ## Improvement to do
 
-*   Manage a custom icon for this template
 *   Allow the user to choose another route name 
 *   Make the route secure (https)
 *   Manage persistence on the database
+
 	 
 
 	
