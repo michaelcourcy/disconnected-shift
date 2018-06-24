@@ -164,13 +164,14 @@ Taking in account all that was previously explained, to reach our goal we're goi
 
 This work because the current project is projectforrestricted. We can list all the bindings : 
 
-     $> oc get rolebinding.rbac
-     NAME                    AGE
-     admin                   1h
-     admin-0                 2m
-     system:deployers        1h
-     system:image-builders   1h
-     system:image-pullers    1h
+     [root@workstation 06_template]# oc get rolebinding
+     NAME                    ROLE                    USERS        GROUPS                                     SERVICE ACCOUNTS   SUBJECTS
+     admin                   /admin                  admin
+     admin-0                 /admin                  restricted
+     system:deployers        /system:deployer                                                                deployer
+     system:image-builders   /system:image-builder                                                           builder
+     system:image-pullers    /system:image-puller                 system:serviceaccounts:projforrestricted
+
     	
 Notice the new binding admin-0 
 
@@ -199,9 +200,47 @@ Admin is a cluster role but the binding is local, I couldn't find a way to check
      
      Using project "projforrestricted".
 
-## Manage quotas
+	 
+#### An interesting example : the openshift project 
 
-Todo.
+Anybody authenticated can see the templates and the imagestream of the openshift project whatever his role. How is this possible ? 
+
+The shared-resource-viewer role exists to allow templates to be shared across project boundaries. Users with this role have the ability to see all existing templates and pull images from that project. However, the user still needs to know which project to look in, because they will not be able to view the project in their oc get projects list.
+By default, this role is granted to the system:authenticated group in the openshift project. This allows users to process the specified template from the openshift project and create the items in the current project 
+
+      [root@workstation 06_template]# oc get rolebinding
+      NAME                      ROLE                               USERS     GROUPS                             SERVICE ACCOUNTS   SUBJECTS
+      shared-resource-viewers   openshift/shared-resource-viewer             system:authenticated
+      system:deployers          /system:deployer                                                                deployer
+      system:image-builders     /system:image-builder                                                           builder
+      system:image-pullers      /system:image-puller                         system:serviceaccounts:openshift
+	  
+Notice this role openshift/shared-resource-viewer is a local role 
+
+      [root@workstation 06_template]# oc get role
+      NAME
+      shared-resource-viewer
+	  
+Let's see in detail how this specific role is built 
+
+      [root@workstation 06_template]# oc describe role shared-resource-viewer
+      Name:                   shared-resource-viewer
+      Namespace:              openshift
+      Created:                3 weeks ago
+      Labels:                 <none>
+      Annotations:            openshift.io/reconcile-protect=false
+      Verbs                   Non-Resource URLs       Resource Names  API Groups                      Resources
+      [get list watch]        []                      []              [ template.openshift.io]        [templates]
+      [get list watch]        []                      []              [ image.openshift.io]           [imagestreamimages imagestreams imagestreamtags]
+      [get]                   []                      []              [ image.openshift.io]           [imagestreams/layers]
+
+If you check in another project this role does not exist. 
+
+This give a good starting point to allow someone to see some but not all type of content of a project but not beeing able to edit it.
+	 
+## TODOS
+
+Manage quotas
 
 		
 	

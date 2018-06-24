@@ -29,6 +29,11 @@ cluster/.vagrant/
 base_machine/.vagrant/
 prepare_offline/.vagrant/
 
+#ignore the construction inside the labs
+cluster/lab/05_builder/git-source/
+cluster/lab/05_builder/disconnected-content/
+cluster/lab/05_builder/ssh_keys/
+
 
 
 

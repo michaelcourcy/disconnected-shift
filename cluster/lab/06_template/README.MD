@@ -48,6 +48,8 @@ In a project of your choice run the template
 	 
 Notice that oc process is executed in the openshift project (where this template live) but oc create is executed in the current namespace.
 
+The openshift project is a special project because [some role were added to allow anybody authenticated to see its templates and imagestream](../04_manage_user_and_project).
+
 We want to try it, but the mysql service is only available on a cluster so let's connect to node1
      
 	 $> ssh root@node1.lab.example.com
@@ -342,7 +344,7 @@ All this is gathered in mysql-ephemeral-and-phpmyadmin-template.json
 
 Install it in the openshift namespace
 
-     $> oc create -f /vagrant/lab/04_template/mysql-ephemeral-and-phpmyadmin-template.json -n openshift 
+     $> oc create -f /vagrant/lab/06_template/mysql-ephemeral-and-phpmyadmin-template.json -n openshift 
      $> oc get template -n openshift | grep phpmyadmin
      mysql-phpmyadmin-ephemeral    MySQL database service, without persistent storage with an associated phpmyad...   8 (3 generated)   6
 	 
@@ -462,6 +464,7 @@ specify a background-image in a css we provide : disconnected.css
 We need to serve this file, let's create an app we call static-content that serve a static content we can edit easily. The best for that is to use a S2I nginx template that point to a git repository we manage.
 
 	TODO 
+	gitignore for the repositories
 
 
 Check the content is properly served in https
