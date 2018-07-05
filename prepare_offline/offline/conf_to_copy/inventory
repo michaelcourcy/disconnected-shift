@@ -2,6 +2,7 @@
 masters
 nodes
 etcd
+#new_nodes
 
 # Set variables common for all OSEv3 hosts
 [OSEv3:vars]
@@ -140,3 +141,6 @@ master.lab.example.com openshift_ip=172.25.250.10
 #https://github.com/openshift/openshift-ansible/issues/8327
 node1.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'east', 'type': 'router', 'node-role.kubernetes.io/compute': 'true'}" openshift_ip=172.25.250.11
 node2.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'west', 'node-role.kubernetes.io/compute': 'true'}" openshift_ip=172.25.250.12
+
+#[new_nodes]
+#node3.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'west', 'node-role.kubernetes.io/compute': 'true'}" openshift_ip=172.25.250.13

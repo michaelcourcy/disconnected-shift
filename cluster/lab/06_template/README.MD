@@ -450,33 +450,63 @@ Which will generate this span
 	  <span class="phpmyadmin-logo"></span>
 	  
 We may try to use the solution with the font with a font generator like the [icomoon app](https://icomoon.io/app/#/select), but the simplest way of doing it is to 
-specify a background-image in a css we provide : disconnected.css 
+specify a background-image in a css we provide : disconnected.css and our own image 
 
+We're going to host this svg and the css in the [disconnected-content builder project we did](../05_builder).
 
-     span.phpmyadmin-logo{
+First let's update the alice git directory on the window host 
+
+     $> cd /d/projets/OC/disconnected/alice
+	 
+Create the file disconnected.css
+     
+	 span.phpmyadmin-logo{
 	   display:inline-block;
 	   width: 100%;
 	   height: 100%;
 	   background-size: contain;
-	    background:  url(data:image/gif;base64,R0lGODlhEAAQAMQAAORHHOVSKudfOulrSOp3WOyDZu6QdvCchPGolfO0o/XBs/fNwfjZ0frl3/zy7////wAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACH5BAkAABAALAAAAAAQABAAAAVVICSOZGlCQAosJ6mu7fiyZeKqNKToQGDsM8hBADgUXoGAiqhSvp5QAnQKGIgUhwFUYLCVDFCrKUE1lBavAViFIDlTImbKC5Gm2hB0SlBCBMQiB0UjIQA7)      no-repeat center;
+	   background:  url(PhpMyAdmin_logo.svg) no-repeat center;
 	 }
+	 
+Copy the logo you can find here  
+	 
+	 https://upload.wikimedia.org/wikipedia/commons/4/4f/PhpMyAdmin_logo.svg
+	 
 
-We need to serve this file, let's create an app we call static-content that serve a static content we can edit easily. The best for that is to use a S2I nginx template that point to a git repository we manage.
+Commit and push your change	 
 
-	TODO 
-	gitignore for the repositories
+	 $> git add .
+	 $> git commit -m "Adding css and logo for custom logo template"
+	 $> git push origin master
 
+Let's comeback to workstation and restart the build on the project disconnected-content
 
-Check the content is properly served in https
+     $> oc start-build disconnected-content
 
-	TODO 
+This will recreate the images with new contents. Check the content is properly served in https
+
+     $> curl -k https://static-disconnected-content.cloudapps.lab.example.com/disconnected.css
+	 $> curl -k https://static-disconnected-content.cloudapps.lab.example.com/PhpMyAdmin_logo.svg
 
 The webconsole has to load this css now. In the openshift-webconsole namespace there's a configmap we can use to add [css and javascript file](https://docs.openshift.org/3.9/install_config/web_console_customization.html ) 
 
     $ oc edit configmap/webconsole-config -n openshift-web-console
 	
+And add the css file https://static-disconnected-content.cloudapps.lab.example.com/disconnected.css in the stylesheetURLs array 
 
-    TODO 
+
+     ....
+	 extensions:
+      properties: {}
+      scriptURLs: []
+      stylesheetURLs: ["https://static-disconnected-content.cloudapps.lab.example.com/disconnected.css"]
+     features:
+	 ....
+    
+After saving the ConfigMap, the web console containers will be updated automatically for the new extension files within a few minutes.	
+
+Now the logo appear in the catalog.
+
 
 
 ## Improvement to do

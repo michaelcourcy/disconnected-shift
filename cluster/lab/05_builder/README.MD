@@ -17,7 +17,9 @@ Create a user able to connect as disconnectedgit
 
 	cd /vagrant/lab/05_builder/ssh_keys/
 	ssh-keygen -t rsa -b 4096 -C "alice@disconnectedgit" -f ./alice_rsa -P ""
+	ssh-keygen -t rsa -b 4096 -C "bob@disconnectedgit" -f ./bob_rsa -P ""
 	cat /vagrant/lab/05_builder/ssh_keys/alice_rsa.pub >> /home/disconnectedgit/.ssh/authorized_keys
+	cat /vagrant/lab/05_builder/ssh_keys/bob_rsa.pub >> /home/disconnectedgit/.ssh/authorized_keys
     chown -R disconnectedgit:disconnectedgit /home/disconnectedgit/.ssh
     chmod 700 /home/disconnectedgit/.ssh
     chmod 600 /home/disconnectedgit/.ssh/authorized_keys
@@ -56,8 +58,7 @@ Create a alice directory commit change and push them to the distant repository
     $>mkdir -p disconnected/alice
     $>cd disconnected/alice/
     $>git init
-    Initialized empty Git repository in D:/projets/OC/disconnected/john/.git/
-	$>git config user.name "Alice"
+    $>git config user.name "Alice"
 	$>git config user.email "alice@disconnectedgit"
 	$>echo "<html><body>Hello world</body></html>" > index.html
     $>git add .
@@ -67,16 +68,36 @@ configure git to use the alice key to connect to the remote repository
 
     $>cd 
     $>cat <<EOF >> ~/.ssh/config
-    Host discogit
+    Host discogitAlice
        Hostname 172.25.250.254
        IdentityFile /e/openshift/cluster/lab/05_builder/ssh_keys/alice_rsa
        User disconnectedgit
 	   
     EOF	
 	$>cd /d/projets/OC/disconnected/alice
-	$>git remote add origin discogit:disconnected-content.git
+	$>git remote add origin discogitAlice:disconnected-content.git
 	$>git push origin master
 	
+And to continue to imagine a collaborative project let add Bob still on the window host 
+   
+    $>cat <<EOF >> ~/.ssh/config
+    Host discogitBob
+       Hostname 172.25.250.254
+       IdentityFile /e/openshift/cluster/lab/05_builder/ssh_keys/bob_rsa
+       User disconnectedgit
+	   
+    EOF	
+	$>cd /d/projets/OC/ #or whatever repository 
+	$>mkdir -p disconnected/bob
+	$>git clone discogitBob:disconnected-content.git
+	$>git config user.name "Bob"
+	$>git config user.email "bob@disconnectedgit"
+	$>echo '<!-- useless comment -->' >> index.html
+	$>git add .
+	$>git commit -m "useless comment"
+	$>git push origin master 
+	
+Both Alice and Bob have contributed to the project.
 	
 ##Build the first Source to image 
 
@@ -149,16 +170,17 @@ To finish the job we are going now to add a route so we can reach the new applic
     oc expose svc/disconnected-content
     oc get route
     NAME                   HOST/PORT                                                              PATH      SERVICES               PORT           TERMINATION   WILDCARD
-    disconnected-content   disconnected-content-disconnected-content.cloudapps.lab.example.com             disconnected-content       8080-tcp                 None
+    disconnected-content   disconnected-content-disconnected-content.cloudapps.lab.example.com              disconnected-content   8080-tcp                     None
     curl http://disconnected-content-disconnected-content.cloudapps.lab.example.com
     <html><body>Hello world!</body></html>
 
-Notice that the route is really not nice disconnected-content-disconnected-content.... We change it 
+Notice that the route is really not nice disconnected-content-disconnected-content.... We change it and beside we make a secure edge route where default certificate will be used.
 
     oc delete route disconnected-content
-    oc expose svc/disconnected-content --hostname=static-disconnected-content.cloudapps.lab.example.com
-    curl http://static-disconnected-content.cloudapps.lab.example.com
+	oc create route edge disconnected-content --service=disconnected-content --hostname=static-disconnected-content.cloudapps.lab.example.com --port=8080
+    curl -k https://static-disconnected-content.cloudapps.lab.example.com
     <html><body>Hello world!</body></html>
+	<!-- useless comment -->
 
 ### Understand the flow of action 
 
@@ -180,7 +202,7 @@ if you run oc get all you see a bunch of things
     imagestreams/nginx-112-centos7      docker-registry.default.svc:5000/disconnected-content2/nginx-112-centos7      latest    29     minutes ago
     
     NAME                          HOST/PORT                                               PATH      SERVICES               PORT           TERMINATION   WILDCARD
-    routes/disconnected-content   static-disconnected-content.cloudapps.lab.example.com             disconnected-content   8080-tcp                     None
+    routes/disconnected-content   static-disconnected-content.cloudapps.lab.example.com             disconnected-content   8080           edge          None
     
     NAME                              READY     STATUS       RESTARTS   AGE
     po/disconnected-content-1-build   0/1       Init:Error   0          27m
@@ -199,9 +221,9 @@ The command
 
 Create a bunch of thing in this order : 
 
-* An image stream will be created as "nginx-112-centos7:latest" that will track the source image 
+* An image stream will be created as "nginx-112-centos7:latest" that will track the S2I image
 * A buildConfig with different triggers (see the triggers definition), especially one based on the image stream previously created. A buildConfig is similar to job in jenkins, every time a job is executed it's a build. As we change and re-rerun twice the buildconfig we can see two builds. For one buildconfig you may have many builds.
-* The buildConfig is executed and it create a build using source code from disconnectedgit@workstation.lab.example.com:disconnected-content.git plus the S2I image in the 
+* The buildConfig is executed and it create a build using source code from disconnectedgit@workstation.lab.example.com:disconnected-content.git plus the S2I image
 * The resulting image will be pushed to image stream "disconnected-content:latest"
 * A deployment config "disconnected-content" based on the image stream  disconnected-content:latest
 * A service "disconnected-content"
@@ -212,7 +234,7 @@ This is the "new-app" way by making the best guess, but you can write a complete
 
  *  Error if instead of using the nginx image coming from the workstation registry we use image coming from the internal registry
  *  Annotating the Secret with the Repository : the rest of this tutorial fail, we should open an issue
- *  Manage a hook to restart the buils as soon as the code change
+ *  Create a hook in the git repository to restart the build as soon as the code change, but that's not necessary if we use jenkins because we can chain the jobs
  
     
 

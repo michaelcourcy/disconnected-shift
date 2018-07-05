@@ -7,7 +7,7 @@ base_machine/offline/
 prepare_offline/offline/repos/
 prepare_offline/offline/images/*.tar
 prepare_offline/offline/conf_to_copy/openshift-ansible/
-prepare_offline/offline/conf_to_copy/certs/
+prepare_offline/offline/conf_to_copy/certs/*
 #don't add the extra rpms for the lab
 cluster/lab/03_glusterfs/rpms/
 

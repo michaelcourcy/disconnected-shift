@@ -66,7 +66,7 @@ Vagrant.configure("2") do |config|
    #       v.cpus = 2
    #   end
    #   node3.vm.provision "shell", path: "configure_dhcp.sh"
-   #   node3.vm.provision "shell", path: "install_openshift_images.sh"
+   #   #node3.vm.provision "shell", path: "install_openshift_images.sh"
    #end
    
    config.vm.define "workstation" do |workstation|      
