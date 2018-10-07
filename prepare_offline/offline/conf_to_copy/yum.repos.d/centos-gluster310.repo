@@ -1,0 +1,6 @@
+[centos-gluster310]
+name=centos-gluster310
+baseurl=file:///vagrant/offline/repos/centos-gluster310
+gpgcheck=0
+enabled=1
+

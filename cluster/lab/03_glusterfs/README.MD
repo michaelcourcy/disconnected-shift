@@ -32,8 +32,6 @@ Hence the logical volume created is /dev/vggluster/lvgluster
 	 
 ### Install gluster fs 
 
-     yum search centos-release-gluster
-	 yum install centos-release-gluster310
 	 yum install glusterfs-server
 	 systemctl start glusterd
 	 systemctl enable glusterd
@@ -44,7 +42,7 @@ Hence the logical volume created is /dev/vggluster/lvgluster
 
 This action must be done on  master 
 
-     cd /vagrant/lab/03_glusterfs/rpms/
+         cd /vagrant/lab/03_glusterfs/rpms/
 	 
 download heketi-cli and heketi-server from epel (I'm not completly offline ...) 
 
@@ -54,7 +52,7 @@ download heketi-cli and heketi-server from epel (I'm not completly offline ...)
 Install the rpm
 
 	 rpm -Uvh heketi-5.0.1-1.el7.x86_64.rpm
-     rpm -Uvh heketi-client-5.0.1-1.el7.x86_64.rpm
+         rpm -Uvh heketi-client-5.0.1-1.el7.x86_64.rpm
 
 master must be able to connect to node1 and node2 with a ssh-key that will be used also by heketi 
 

@@ -98,7 +98,7 @@ Let's see what we have
 	
 We have a lot of thing ! But all are very important and you should spend time in the doc to understand their role 
 
-*  A pod wich is a bit like a container. Try : edit pod bouchon-xxx
+*  A pod wich is a bit like a container. Try : oc edit pod bouchon-xxx
 *  An image-stream that keep a reference to the to the image in the pod 
 *  A deployment-config that watch the image-stream to detect changes, try : oc edit dc bouchon and look at the triggers section
 *  A service wich give a unique ip in the cluster to the pod, if a pod is detroyed and recreated the pod ip change but not the service ip nor it's dns name. Beside the service load balance the requests to the pods if you increase the number of pod with the replication controller. Try edit svc bouchon and look at selector

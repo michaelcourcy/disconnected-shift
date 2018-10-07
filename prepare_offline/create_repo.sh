@@ -1,7 +1,7 @@
 echo "add ansible.repo to have ansible version 2.4.3.0 or newer" 
 cp /vagrant/offline/conf_to_copy/ansible.repo /etc/yum.repos.d
 YUM_REPO_D=/vagrant/offline/conf_to_copy/yum.repos.d
-for repo in  base updates extras centosplus centos-openshift-origin ansible
+for repo in  base updates extras centosplus centos-openshift-origin ansible centos-gluster310
 do
   echo "Synchronize the repo ${repo} option -n only new packages"
   reposync -lmn --repoid=${repo} --download_path=/vagrant/offline/repos/

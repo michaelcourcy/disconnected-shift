@@ -126,6 +126,17 @@ openshift_disable_check=memory_availability,disk_availability,package_version
 #openshift_builddefaults_resources_limits_cpu=1000m
 #openshift_builddefaults_resources_limits_memory=512Mi
 
+
+#prometheus
+#openshift_hosted_prometheus_deploy=true
+#openshift_prometheus_state=present
+
+#if not activated it's ephemeral storage
+#openshift_prometheus_storage_type="pvc"
+#openshift_prometheus_alertmanager_storage_type="pvc"
+#openshift_prometheus_alertbuffer_storage_type=”pvc”
+
+
 # host group for masters
 [masters]
 master.lab.example.com openshift_ip=172.25.250.10
