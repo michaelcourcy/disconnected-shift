@@ -38,10 +38,13 @@
 Vagrant.configure("2") do |config|
    config.vm.box = "relativkreativ/centos-7-minimal"
    
-   # TODO manage http proxy for the system and for docker 
+   # TODO manage http proxy for the system, for docker and 
+   # and for vragrant itself
+
    config.vm.provision "shell", path: "install_base_package.sh"
    config.vm.provision "shell", path: "clone_openshift-ansible_project.sh"   
    config.vm.provision "shell", path: "create_repo.sh"
    config.vm.provision "shell", path: "pull_and_save_images.sh"
+   config.vm.provision "shell", inline: "echo 'prepare offline successfully complete'"
    
 end

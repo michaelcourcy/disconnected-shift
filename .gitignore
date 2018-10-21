@@ -8,8 +8,6 @@ prepare_offline/offline/repos/
 prepare_offline/offline/images/*.tar
 prepare_offline/offline/conf_to_copy/openshift-ansible/
 prepare_offline/offline/conf_to_copy/certs/*
-#don't add the extra rpms for the lab
-cluster/lab/03_glusterfs/rpms/
 
 
 #ignore oc_base.box
@@ -29,10 +27,6 @@ cluster/.vagrant/
 base_machine/.vagrant/
 prepare_offline/.vagrant/
 
-#ignore the construction inside the labs
-cluster/lab/05_builder/git-source/
-cluster/lab/05_builder/disconnected-content/
-cluster/lab/05_builder/ssh_keys/
 
 
 

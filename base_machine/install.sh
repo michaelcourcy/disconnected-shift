@@ -29,4 +29,5 @@ date
 systemctl stop firewalld
 systemctl disable firewalld
 
+#reduce the size of the machine
 yum clean all
