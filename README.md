@@ -1,6 +1,6 @@
 # Openshift origin disconnected
 
-This project aims to learn how to build an openshift-origin 3.9 cluster in a disconnected environment and also practice CI/CD with this PAAS. It runs in a vagrant box and create 4 machines :
+This project aims to learn how to build an openshift-origin 3.9 cluster in a disconnected environment. It runs in a vagrant box and create 4 machines :
 
 *   Workstation that hold the following roles : 
     *   ansible installer, 
