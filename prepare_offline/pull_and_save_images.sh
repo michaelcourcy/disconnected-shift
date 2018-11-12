@@ -17,6 +17,7 @@ do
 		for image in `cat $list` 
 		do 
 			echo "Pulling image ${image}"
+			#remove whitespace
 			image=$(echo -e "${image}" | sed -e 's/[[:space:]]*$//')
 			docker pull $image
 			images+=$image
@@ -24,7 +25,6 @@ do
 		done
 		#remove the last whitespace
 		images=$(echo -e "${images}" | sed -e 's/[[:space:]]*$//')
-		archive="${list%.list}.tar"
 		echo "saving in archive $archive images : $images"
 		#something strange on the whitespace I can't figure out 
 		# running directly docker save -o /vagrant/offline/images/$archive $images

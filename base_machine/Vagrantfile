@@ -6,10 +6,21 @@ Vagrant.configure("2") do |config|
    config.vm.box = "relativkreativ/centos-7-minimal"
    config.vm.provider "virtualbox" do |vb|
       controller_name = 'SATA Controller'
+      #storage for docker 
 	  port=1
       file_to_disk = "./sdb.vdi"
 	  vb.customize ['createhd', '--filename', file_to_disk, '--size', 2 * 20480] unless File.exist?(file_to_disk)
-	  vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', port, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+      vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', port, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+      #storage for gluster 
+      port=2
+      file_to_disk = "./sdc.vdi"
+	  vb.customize ['createhd', '--filename', file_to_disk, '--size', 2 * 10240] unless File.exist?(file_to_disk)
+      vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', port, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
+      #storage for gluster registry
+      port=3
+      file_to_disk = "./sdd.vdi"
+	  vb.customize ['createhd', '--filename', file_to_disk, '--size', 2 * 5120] unless File.exist?(file_to_disk)
+      vb.customize ['storageattach', :id, '--storagectl', 'SATA', '--port', port, '--device', 0, '--type', 'hdd', '--medium', file_to_disk]
    end
    config.vm.provision "shell", path: "change_repo_location.sh"
    config.vm.provision "shell", path: "install.sh"

@@ -11,6 +11,3 @@ yum install -y centos-release-openshift-origin
  
 echo "installing epel repo"
 yum install -y epel-release
-
-echo "installing glusterfs"
- yum install -y centos-release-gluster310

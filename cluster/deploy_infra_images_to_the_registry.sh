@@ -1,6 +1,7 @@
 #installing and pushing the images to the registries 
 echo "installing origin-infra-v3.9.0.tar"
 docker load -i /vagrant/offline/images/origin-infra-v3.9.0.tar
+docker load -i /vagrant/offline/images/glusterfs.tar
 
 # Override image version, defaults to latest for origin, vX.Y product version for enterprise
 #In the registry-console template there's no imagePullPolicy defined then this rules apply

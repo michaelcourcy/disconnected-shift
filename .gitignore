@@ -16,6 +16,8 @@ base_machine/oc_base.box
 
 #ignore vdi
 base_machine/sdb.vdi
+base_machine/sdc.vdi
+base_machine/sdd.vdi
 
 #ignore the ssh config file to connect in mobaxterm
 cluster/.ssh/

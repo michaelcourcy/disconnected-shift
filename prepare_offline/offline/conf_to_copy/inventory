@@ -72,7 +72,9 @@ openshift_cockpit_deployer_basename=kubernetes
 #registry die on workstation 
 openshift_cockpit_deployer_version=latest
 
-
+openshift_storage_glusterfs_image=workstation.lab.example.com/gluster/gluster-centos
+openshift_storage_glusterfs_block_image=workstation.lab.example.com/gluster/glusterblock-provisioner
+openshift_storage_glusterfs_heketi_image=workstation.lab.example.com/heketi/heketi
 
 #specify where the console should be deployed
 openshift_web_console_nodeselector={'region':'infra'}
@@ -152,6 +154,16 @@ master.lab.example.com openshift_ip=172.25.250.10
 #https://github.com/openshift/openshift-ansible/issues/8327
 node1.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'east', 'type': 'router', 'node-role.kubernetes.io/compute': 'true'}" openshift_ip=172.25.250.11
 node2.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'west', 'node-role.kubernetes.io/compute': 'true'}" openshift_ip=172.25.250.12
+
+[glusterfs]
+master.lab.example.com glusterfs_devices='[ "/dev/sdc" ]' openshift_ip=172.25.250.10
+node1.lab.example.com glusterfs_devices='[ "/dev/sdc" ]' openshift_ip=172.25.250.11
+node2.lab.example.com glusterfs_devices='[ "/dev/sdc" ]' openshift_ip=172.25.250.12
+
+[glusterfs_registry]
+master.lab.example.com glusterfs_devices='[ "/dev/sdd" ]' openshift_ip=172.25.250.10
+node1.lab.example.com glusterfs_devices='[ "/dev/sdd" ]' openshift_ip=172.25.250.11
+node2.lab.example.com glusterfs_devices='[ "/dev/sdd" ]' openshift_ip=172.25.250.12
 
 #[new_nodes]
 #node3.lab.example.com openshift_node_labels="{'region': 'infra', 'zone': 'west', 'node-role.kubernetes.io/compute': 'true'}" openshift_ip=172.25.250.13
